@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type',
     ];
 
     public function post(){
@@ -48,6 +49,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function type(){
+        if($this->type == 'admin'){
+        return "<span class ='badge bg-warning'> ".$this->type ."</span>" ; 
+        }else{
+            return "<span class ='badge bg-info'> ".$this->type ."</span>" ; 
+        }
+    }
+
+    public function posts(){
+        return $this-> hasMany(Post::class);
     }
 
 

@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     //
     public function index(){
-        $posts = Post::paginate();
+        $posts = Post::orderBy('created_at','DESC')->paginate();
         return view('posts.index', compact('posts'));
     }
     public function home(){
@@ -39,16 +39,21 @@ class PostController extends Controller
 
 
     public function store(Request $request){
+
+
         $request->validate([
             'title'=> 'required|min:3|string',
-            'description'=> 'required|string|max:1500',
+            'description'=> 'required|string',
             'user_id' => 'required|exists:users,id',
+            'image' => 'required|mimes:png,jpg,jpeg'
         ]);
 
+        $imagePath = $request->file('image')->store('posts','public',);
         Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'user_id' => $request->user_id,
+            'image' => $imagePath,
 
         ]);
         

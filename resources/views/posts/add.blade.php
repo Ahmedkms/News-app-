@@ -6,7 +6,7 @@
 
     <div class="col-12">
         <h1 class="p-3  text-center my-3">Add New Posts</h1>
-        <form action="{{ route('post-store') }}" method="POST" class="form border b-3">
+        <form action="{{ route('post-store') }}" method="POST" class="form border b-3" enctype="multipart/form-data">
             @csrf
             @if(session()->get('success') !=null)
             <div class="alert alert-success">{{session()->get('success')}}</div>
@@ -22,7 +22,13 @@
                 <label class="label"> post description </label>
             </div>
             <textarea name="description" class="form-control" rows="7" >{{ old('description') }}</textarea>
-
+            <div class="mb-3">
+                <label class="label"> post image</label>
+                <input type="file" class="form-control" name="image" >
+            </div>
+            @error('file')
+            <div class="alert alert-danger sm"> {{$message}}</div>
+            @enderror
             <div class="mb-3">
                 <div class="label">writer</div>
                 <select name="user_id" class="form-control">
@@ -35,7 +41,7 @@
             <div class="alert alert-danger sm"> {{$message}}</div>
             @enderror
             <div class="mb-3" >
-                <input type="submit" class="form-control bg-primary"  value="add new user">
+                <input type="submit" class="form-control bg-primary"  value="add new Post">
             </div>
         </form>
     </div>

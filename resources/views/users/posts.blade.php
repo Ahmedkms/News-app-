@@ -19,21 +19,17 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Writer</th>
-                    <th>Image </th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($posts as $post)
+                @foreach($user->posts as $post)
                 <tr>
-                    <td>{{$loop->iteration}}</td>
+                    <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{Str::limit($post->description,50)}}</td>
                     <td>{{$post->user->name}}</td>
-                    <td>
-                        <img src="{{ asset('storage/'.$post->image) }}" alt="" height="100" width="100">
-                    </td>
                     <td>
                         <a href="{{ route('edit-post',$post->id) }}" class="btn btn-info">Edit</a>
                     </td>
@@ -48,9 +44,5 @@
                 @endforeach
             </tbody>
         </table>
-        <div>
-            {{ $posts->links() }}
-        </div>
-
     </div>
 @endsection

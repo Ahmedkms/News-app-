@@ -12,6 +12,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('posts') }}">Posts</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('users.index') }}">users</a>
+          </li>
+          {{-- <li class="nav-item">
+            <a class="nav-link" href="{{ url('posts') }}">tags</a>
+          </li> --}}
        
         </ul>
         <form action="{{ route('search') }}" method="GET" class="d-flex" role="search">

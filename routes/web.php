@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [PostController::class,'home']);
 
@@ -19,4 +21,14 @@ Route::get('posts/{id}',[PostController::class,'show'] );
 
 
 Route::get('searchForPosts',[PostController::class,'search'])->name('search');
+
+Route::resource('users',UserController::class);
+Route::get('users.posts/{id}',[UserController::class,'posts'])->name('user.posts');
+
+
+
+
+
+
+
 
